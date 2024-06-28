@@ -1,4 +1,7 @@
 {
   "name": "BeanBot",
-  "displayName": "BeanBot"
+  "displayName": "BeanBot",
+  "plugins": [
+    "expo-build-properties"
+  ]
 }
