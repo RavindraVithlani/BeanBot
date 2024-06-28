@@ -1,4 +1,4 @@
-package com.beanbot
+package com.BeanBot
 import expo.modules.ReactActivityDelegateWrapper
 
 import com.facebook.react.ReactActivity

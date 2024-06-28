@@ -1,4 +1,4 @@
-package com.beanbot
+package com.BeanBot
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
