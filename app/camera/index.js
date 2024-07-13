@@ -1,5 +1,5 @@
 import React from 'react';
-import Camera from '../components/Camera';
+import Camera from '../../components/Camera';
 import { StyleSheet, View } from 'react-native';
 
 export default function CameraScreen() {

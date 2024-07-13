@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from 'expo-router';
-import BottomNavBar from './components/BottomNavBar';
+import BottomNavBar from '../components/BottomNavBar';
 
 export default function Home() {
   const navigation = useNavigation();

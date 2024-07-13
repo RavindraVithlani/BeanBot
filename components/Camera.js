@@ -89,7 +89,7 @@ export default function Camera() {
 
 
   const uploadImage = async (uri) => {
-    const apiUrl = 'http://192.168.48.77:5000/predict'; // Replace with your server URL
+    const apiUrl = 'http://10.0.2.2:5000/predict'; // Replace with your server URL
     const formData = new FormData();
 
     // Convert image to base64

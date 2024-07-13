@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { Slot, useRouter } from 'expo-router';
-import Header from './components/Header';
+import Header from '../components/Header';
 // import BottomNavBar from './components/BottomNavBar';
 
 export default function Layout() {
@@ -13,7 +13,7 @@ export default function Layout() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Header />
-          <Slot />
+          <Slot/>
           {/* <BottomNavBar /> */}
         </View>
       </SafeAreaView>
@@ -24,10 +24,10 @@ export default function Layout() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
     paddingTop: StatusBar.currentHeight // Handle Android padding
   },
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 });

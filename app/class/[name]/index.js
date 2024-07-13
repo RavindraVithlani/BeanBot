@@ -1,7 +1,7 @@
 // app/class/details.js
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useGlobalSearchParams } from 'expo-router';
 
 const pulseDetails = {
   'Mung Bean': {
@@ -20,16 +20,11 @@ const pulseDetails = {
 };
 
 const Details = () => {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const { name } = route.params;
-  const details = pulseDetails[name];
-
+  const { name } = useGlobalSearchParams();
+  const details = pulseDetails.name;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{name}</Text>
       <Text style={styles.description}>{details?.description}</Text>
-      <Button title="Back to Names" onPress={() => navigation.goBack()} />
     </View>
   );
 };
@@ -38,7 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f8f8f8',
   },
   title: {
     fontSize: 24,
