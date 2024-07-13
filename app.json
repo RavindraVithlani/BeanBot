@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "BeanBot",
+    "scheme":"beanbot",
     "slug": "beanbot",
     "ios": {
      "bundleIdentifier": "com.BeanBot"
@@ -10,12 +11,6 @@
     },
     "runtimeVersion": "1.0.0"
     
-  },
-  "name": "BeanBot",
-  "plugins": [
-    "expo-router"
-  ],
-  "scheme": "beanbot",
-  "displayName": "BeanBot"
+  }
   
 }
