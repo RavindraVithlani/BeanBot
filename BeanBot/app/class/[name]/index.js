@@ -1,30 +1,53 @@
 // app/class/details.js
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 import { useGlobalSearchParams } from 'expo-router';
 
-const pulseDetails = {
-  'Mung Bean': {
-    description:
-      'The Mung Bean (Vigna Radiata), alternatively known as the green gram, mungo bean, or mongo bean, is a plant species in the legume family.',
-  },
-  'Bengal Gram': {
-    description:
-      'Bengal Gram is also known as Chana or Chickpea and is a major pulse crop in India.',
-  },
-  'Black Gram': {
-    description:
-      'Black Gram, also known as Urad, is a type of pulse cultivated in the Indian subcontinent.',
-  },
-  // Add more details here
-};
-
-const Details = () => {
+const PulseDetailScreen = () => {
   const { name } = useGlobalSearchParams();
-  const details = pulseDetails.name;
+  const pulseName = name;
+  const [pulseData, setPulseData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadPulseData = async () => {
+      try {
+        console.log(FileSystem.bundleDirectory);
+        const filePath = `${FileSystem.bundleDirectory}assets/data/${pulseName}.json`;
+        const fileContent = await FileSystem.readAsStringAsync(filePath);
+        const jsonData = JSON.parse(fileContent);
+        setPulseData(jsonData);
+      } catch (err) {
+        setError(`Failed to load data for ${pulseName}`);
+      }
+    };
+
+    loadPulseData();
+  }, [pulseName]);
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.error}>{error}</Text>
+      </View>
+    );
+  }
+
+  if (!pulseData) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.description}>{details?.description}</Text>
+      <Text style={styles.title}>{pulseData.name}</Text>
+      <Text style={styles.description}>{pulseData.description}</Text>
+      {/* Render other pulse details here */}
     </View>
   );
 };
@@ -32,17 +55,21 @@ const Details = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
   },
   description: {
     fontSize: 16,
-    marginBottom: 20,
+    marginTop: 8,
+  },
+  error: {
+    color: 'red',
   },
 });
 
-export default Details;
+export default PulseDetailScreen;
