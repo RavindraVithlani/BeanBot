@@ -2,8 +2,6 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from 'react-native-ui-lib';
-
 export default function BottomNavBar() {
 
   return (

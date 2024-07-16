@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { pulseDataFiles } from './data';
 const ResultModal = ({ visible, data, onClose }) => {
 
   const handleReadMore = () => {
@@ -10,8 +11,7 @@ const ResultModal = ({ visible, data, onClose }) => {
   const handleOtherNames = () => {
     router.navigate(`class/${data.className}/names`);
   };
-
-
+ 
   return(
     <Modal
       animationType="slide"
@@ -22,9 +22,9 @@ const ResultModal = ({ visible, data, onClose }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View style={styles.contentContainer}>
-            <Text style={styles.title}>{data.className}</Text>
+            <Text style={styles.title}>{pulseDataFiles[data.className]?.name}</Text>
             <Text style={styles.description}>
-              The Mung Bean (Vigna Radiata), alternatively known as the green gram, mungo bean, or mongo bean, is a plant species in the legume family. The Mung Bean is mainly cultivated in East, South East, and South Asia. It is used as an ingredient in both savory and sweet dishes.
+              {pulseDataFiles[data.className]?.general?.Description}
             </Text>
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.button} onPress={handleReadMore}>

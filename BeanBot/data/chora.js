@@ -1,4 +1,4 @@
-{
+export const chora = {
     "name": "Black Eyed Pea",
     "general": {
         "title": "General Information",

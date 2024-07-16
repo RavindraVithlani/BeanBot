@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Slot, useRouter } from 'expo-router';
+import { Slot } from 'expo-router';
 import Header from '../components/Header';
 // import BottomNavBar from './components/BottomNavBar';
 
 export default function Layout() {
-  const router = useRouter();
 
   return (
     <>
@@ -13,7 +12,7 @@ export default function Layout() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Header />
-          <Slot/>
+          <Slot name = "hellooooooooo."/>
           {/* <BottomNavBar /> */}
         </View>
       </SafeAreaView>

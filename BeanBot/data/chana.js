@@ -1,4 +1,4 @@
-{
+export const chana = {
     "name": "Bengal Gram",
     "general": {
         "title": "General Information",

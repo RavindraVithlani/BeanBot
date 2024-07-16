@@ -1,74 +1,71 @@
-// app/class/details.js
-
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import * as FileSystem from 'expo-file-system';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useGlobalSearchParams } from 'expo-router';
+import { pulseDataFiles } from '../../../components/data';
 
 const PulseDetailScreen = () => {
   const { name } = useGlobalSearchParams();
-  const pulseName = name;
-  const [pulseData, setPulseData] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadPulseData = async () => {
-      try {
-        console.log(FileSystem.bundleDirectory);
-        const filePath = `${FileSystem.bundleDirectory}assets/data/${pulseName}.json`;
-        const fileContent = await FileSystem.readAsStringAsync(filePath);
-        const jsonData = JSON.parse(fileContent);
-        setPulseData(jsonData);
-      } catch (err) {
-        setError(`Failed to load data for ${pulseName}`);
-      }
-    };
-
-    loadPulseData();
-  }, [pulseName]);
-
-  if (error) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.error}>{error}</Text>
-      </View>
-    );
-  }
+  const pulseData = pulseDataFiles[name];
 
   if (!pulseData) {
     return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <Text style={styles.error}>No data available for {name}</Text>
       </View>
     );
   }
+  const renderSection = (section, key) => {
+    return (
+      <View key={key} style={styles.section}>
+        <Text style={styles.sectionTitle}>{section.title}</Text>
+        <Text style={styles.sectionDescription}>{section.Description}</Text>
+        <Text style={styles.source}>(source: {section.source})</Text>
+      </View>
+    );
+  };
+  
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{pulseData.name}</Text>
-      <Text style={styles.description}>{pulseData.description}</Text>
-      {/* Render other pulse details here */}
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      {Object.entries(pulseData).map(([key, section]) => {
+        if (key === 'name') return null; // Skip the name field
+        return renderSection(section, key);
+      })}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexGrow: 1,
     padding: 16,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 16,
   },
-  description: {
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  sectionDescription: {
     fontSize: 16,
-    marginTop: 8,
+    marginBottom: 4,
+    lineHeight: 25,
+  },
+  source: {
+    fontSize: 14,
+    color: 'grey',
+    lineHeight:20,
   },
   error: {
     color: 'red',
+    fontSize: 18,
   },
 });
 

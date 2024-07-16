@@ -1,4 +1,4 @@
-{
+export const urad = {
     "name": "Black Gram",
     "general": {
         "title": "General Information",

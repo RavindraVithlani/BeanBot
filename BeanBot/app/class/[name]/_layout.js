@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Slot, Link, useGlobalSearchParams, usePathname, router } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
+import { names } from '../../../components/data';
 
 const Layout = () => {
   const { name } = useGlobalSearchParams();
@@ -13,7 +14,7 @@ const Layout = () => {
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <MaterialIcons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.title}>{names[name]}</Text>
       </View>
       <View style={styles.tabContainer}>
         <Link replace href={`/class/${name}`} style={[styles.tab, pathname === `/class/${name}` && styles.activeTab]}>

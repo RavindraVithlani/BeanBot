@@ -1,16 +1,22 @@
 {
   "expo": {
     "name": "BeanBot",
-    "scheme":"beanbot",
+    "scheme": "beanbot",
     "slug": "beanbot",
     "ios": {
-     "bundleIdentifier": "com.BeanBot"
+      "bundleIdentifier": "com.BeanBot"
     },
     "android": {
       "package": "com.BeanBot"
     },
-    "runtimeVersion": "1.0.0"
-    
+    "runtimeVersion": "1.0.0",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them."
+        }
+      ]
+    ]
   }
-  
 }

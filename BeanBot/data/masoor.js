@@ -1,4 +1,4 @@
-{
+export const masoor = {
     "name": "Brown Lentils",
     "general": {
         "title": "General Information",
