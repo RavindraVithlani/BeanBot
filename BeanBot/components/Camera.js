@@ -145,7 +145,7 @@ export default function Camera() {
 
   const uploadImage = async (uri) => {
     setLoading(true);
-    const apiUrl = 'http://10.0.2.2:5000/predict'; // Replace with server URL
+    const apiUrl = 'http://10.20.54.109:5000/predict'; // Replace with server URL
     const formData = new FormData();
 
     // Add file to FormData
@@ -176,7 +176,7 @@ export default function Camera() {
             setModalData({ className: class_name, confidence: confidence });
             setModalVisible(true);
           } else {
-            ToastAndroid.show("Confidence too low to provide details.", ToastAndroid.LONG);
+            ToastAndroid.show(`Confidence too low to provide details.${class_name}, ${confidence}`, ToastAndroid.LONG);
             setImage(null);
           }
         }
